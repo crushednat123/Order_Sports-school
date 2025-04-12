@@ -1,0 +1,133 @@
+﻿<Page
+    x:Class="SportsSchool.Pages.AddEdditPage.EditSessionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SportsSchool.Pages.AddEdditPage"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="EditSessionPage"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Border
+        Height="auto"
+        Margin="20"
+        Background="#E6E6FA"
+        CornerRadius="10"
+        Style="{DynamicResource MaterialDesignToolBarMainPanelBorderStyle}">
+
+        <Grid Margin="20">
+            <!--  Определение столбцов  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170" />
+                <!--  Ширина первой колонки для текста  -->
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+            <!--  Тексты в первой колонке  -->
+            <Grid Grid.Column="0" VerticalAlignment="Center">
+
+                <TextBlock
+                    Margin="0,-240,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="#FF9864C5"
+                    Text="Вид спорта" />
+
+                <TextBlock
+                    Margin="0,-150,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="#FF9864C5"
+                    Text="Тренер" />
+
+                <TextBlock
+                    Margin="0,-50,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="#FF9864C5"
+                    Text="Дата тренировки" />
+
+                <TextBlock
+                    Margin="0,90,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="#FF9864C5"
+                    Text="Время тренировки" />
+
+                <TextBlock
+                    Margin="0,190,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="#FF9864C5"
+                    Text="Место тренировки" />
+            </Grid>
+
+            <!--  Текстовые поля во второй колонке  -->
+            <Grid Grid.Column="1" VerticalAlignment="Center">
+                <StackPanel>
+                    <ComboBox
+                        Name="cbSportName"
+                        Margin="0,0,0,25"
+                        DisplayMemberPath="Name"
+                        SelectedItem="{Binding Sports}"
+                        SelectionChanged="cbSportName_SelectionChanged"
+                        Style="{DynamicResource MaterialDesignComboBox}" />
+
+
+                    <ComboBox
+                        Name="cbCoacheFullName"
+                        Margin="0,0,0,25"
+                        DisplayMemberPath="FullName"
+                        SelectedItem="{Binding Coach}"
+                        SelectionChanged="cbCoacheFullName_SelectionChanged"
+                        Style="{DynamicResource MaterialDesignComboBox}" />
+
+                    <DatePicker
+                        Name="DateTextBox"
+                        Margin="0,0,0,25"
+                        FocusVisualStyle="{x:Null}"
+                        PreviewKeyDown="DateTextBox_PreviewKeyDown"
+                        Style="{DynamicResource MaterialDesignDatePicker}"
+                        Text="{Binding Date, StringFormat='{}{0:dd MMMM yyyy}', ConverterCulture='ru-RU'}" />
+
+                    <materialDesign:TimePicker
+                        Name="TimePiker"
+                        Margin="0,0,0,25"
+                        FocusVisualStyle="{x:Null}"
+                        Focusable="False"
+                        PreviewKeyDown="TimePiker_PreviewKeyDown"
+                        Style="{DynamicResource MaterialDesignFilledTimePicker}"
+                        Text="{Binding Time, StringFormat=HH:mm}" />
+
+                    <TextBox
+                        Name="LocationTextBox"
+                        Margin="0,0,0,25"
+                        Style="{DynamicResource MaterialDesignTextBox}"
+                        Text="{Binding Location}" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <Button
+                    x:Name="btnSave"
+                    VerticalAlignment="Bottom"
+                    Click="btnSave_Click"
+                    Content="Сохранить" />
+            </Grid>
+        </Grid>
+    </Border>
+
+</Page>

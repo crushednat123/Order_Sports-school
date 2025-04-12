@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SportSchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Coach">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Schedules" Relationship="Self.FK_Schedules_Coach" FromRole="Coach" ToRole="Schedules" />
+    <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessions_Coach" FromRole="Coach" ToRole="Sessions" />
+    <NavigationProperty Name="SportsAndCoach" Relationship="Self.FK_SportsAndCoach_Coach" FromRole="Coach" ToRole="SportsAndCoach" />
+  </EntityType>
+  <EntityType Name="Parents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Student_Parents" FromRole="Parents" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="RecordingsOffClasses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdStudent" Type="Int32" />
+    <Property Name="IdSession" Type="Int32" />
+    <NavigationProperty Name="Sessions" Relationship="Self.FK_RecordingsOffClasses_Sessions" FromRole="RecordingsOffClasses" ToRole="Sessions" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_RecordingsOffClasses_Student" FromRole="RecordingsOffClasses" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Schedules">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="DayOfWeek" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="TimeSlot" Type="Time" Precision="7" />
+    <Property Name="IdCoach" Type="Int32" />
+    <Property Name="IdSession" Type="Int32" />
+    <NavigationProperty Name="Coach" Relationship="Self.FK_Schedules_Coach" FromRole="Schedules" ToRole="Coach" />
+  </EntityType>
+  <EntityType Name="Sessions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdSport" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdCoach" Type="Int32" />
+    <NavigationProperty Name="Coach" Relationship="Self.FK_Sessions_Coach" FromRole="Sessions" ToRole="Coach" />
+    <NavigationProperty Name="RecordingsOffClasses" Relationship="Self.FK_RecordingsOffClasses_Sessions" FromRole="Sessions" ToRole="RecordingsOffClasses" />
+    <NavigationProperty Name="Sports" Relationship="Self.FK_Sessions_Sports" FromRole="Sessions" ToRole="Sports" />
+  </EntityType>
+  <EntityType Name="Sports">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessions_Sports" FromRole="Sports" ToRole="Sessions" />
+    <NavigationProperty Name="SportsAndCoach" Relationship="Self.FK_SportsAndCoach_Sports" FromRole="Sports" ToRole="SportsAndCoach" />
+    <NavigationProperty Name="SportsStudents" Relationship="Self.FK_SportsStudents_Sports" FromRole="Sports" ToRole="SportsStudents" />
+  </EntityType>
+  <EntityType Name="SportsAndCoach">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCoach" Type="Int32" Nullable="false" />
+    <Property Name="IdSports" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Coach" Relationship="Self.FK_SportsAndCoach_Coach" FromRole="SportsAndCoach" ToRole="Coach" />
+    <NavigationProperty Name="Sports" Relationship="Self.FK_SportsAndCoach_Sports" FromRole="SportsAndCoach" ToRole="Sports" />
+  </EntityType>
+  <EntityType Name="SportsStudents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdSport" Type="Int32" Nullable="false" />
+    <Property Name="IdStudent" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Sports" Relationship="Self.FK_SportsStudents_Sports" FromRole="SportsStudents" ToRole="Sports" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_SportsStudents_Student" FromRole="SportsStudents" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="IdParents" Type="Int32" />
+    <NavigationProperty Name="Parents" Relationship="Self.FK_Student_Parents" FromRole="Student" ToRole="Parents" />
+    <NavigationProperty Name="RecordingsOffClasses" Relationship="Self.FK_RecordingsOffClasses_Student" FromRole="Student" ToRole="RecordingsOffClasses" />
+    <NavigationProperty Name="SportsStudents" Relationship="Self.FK_SportsStudents_Student" FromRole="Student" ToRole="SportsStudents" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Schedules_Coach">
+    <End Role="Coach" Type="Self.Coach" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coach">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedules">
+        <PropertyRef Name="IdCoach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sessions_Coach">
+    <End Role="Coach" Type="Self.Coach" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coach">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sessions">
+        <PropertyRef Name="IdCoach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SportsAndCoach_Coach">
+    <End Role="Coach" Type="Self.Coach" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SportsAndCoach" Type="Self.SportsAndCoach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coach">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SportsAndCoach">
+        <PropertyRef Name="IdCoach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Parents">
+    <End Role="Parents" Type="Self.Parents" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parents">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="IdParents" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecordingsOffClasses_Sessions">
+    <End Role="Sessions" Type="Self.Sessions" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RecordingsOffClasses" Type="Self.RecordingsOffClasses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sessions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RecordingsOffClasses">
+        <PropertyRef Name="IdSession" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecordingsOffClasses_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RecordingsOffClasses" Type="Self.RecordingsOffClasses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RecordingsOffClasses">
+        <PropertyRef Name="IdStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sessions_Sports">
+    <End Role="Sports" Type="Self.Sports" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sports">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sessions">
+        <PropertyRef Name="IdSport" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SportsAndCoach_Sports">
+    <End Role="Sports" Type="Self.Sports" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SportsAndCoach" Type="Self.SportsAndCoach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sports">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SportsAndCoach">
+        <PropertyRef Name="IdSports" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SportsStudents_Sports">
+    <End Role="Sports" Type="Self.Sports" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SportsStudents" Type="Self.SportsStudents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sports">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SportsStudents">
+        <PropertyRef Name="IdSport" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SportsStudents_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SportsStudents" Type="Self.SportsStudents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SportsStudents">
+        <PropertyRef Name="IdStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SportSchoolEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Coach" EntityType="Self.Coach" />
+    <EntitySet Name="Parents" EntityType="Self.Parents" />
+    <EntitySet Name="RecordingsOffClasses" EntityType="Self.RecordingsOffClasses" />
+    <EntitySet Name="Schedules" EntityType="Self.Schedules" />
+    <EntitySet Name="Sessions" EntityType="Self.Sessions" />
+    <EntitySet Name="Sports" EntityType="Self.Sports" />
+    <EntitySet Name="SportsAndCoach" EntityType="Self.SportsAndCoach" />
+    <EntitySet Name="SportsStudents" EntityType="Self.SportsStudents" />
+    <EntitySet Name="Student" EntityType="Self.Student" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Schedules_Coach" Association="Self.FK_Schedules_Coach">
+      <End Role="Coach" EntitySet="Coach" />
+      <End Role="Schedules" EntitySet="Schedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sessions_Coach" Association="Self.FK_Sessions_Coach">
+      <End Role="Coach" EntitySet="Coach" />
+      <End Role="Sessions" EntitySet="Sessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SportsAndCoach_Coach" Association="Self.FK_SportsAndCoach_Coach">
+      <End Role="Coach" EntitySet="Coach" />
+      <End Role="SportsAndCoach" EntitySet="SportsAndCoach" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Parents" Association="Self.FK_Student_Parents">
+      <End Role="Parents" EntitySet="Parents" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecordingsOffClasses_Sessions" Association="Self.FK_RecordingsOffClasses_Sessions">
+      <End Role="Sessions" EntitySet="Sessions" />
+      <End Role="RecordingsOffClasses" EntitySet="RecordingsOffClasses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecordingsOffClasses_Student" Association="Self.FK_RecordingsOffClasses_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="RecordingsOffClasses" EntitySet="RecordingsOffClasses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sessions_Sports" Association="Self.FK_Sessions_Sports">
+      <End Role="Sports" EntitySet="Sports" />
+      <End Role="Sessions" EntitySet="Sessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SportsAndCoach_Sports" Association="Self.FK_SportsAndCoach_Sports">
+      <End Role="Sports" EntitySet="Sports" />
+      <End Role="SportsAndCoach" EntitySet="SportsAndCoach" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SportsStudents_Sports" Association="Self.FK_SportsStudents_Sports">
+      <End Role="Sports" EntitySet="Sports" />
+      <End Role="SportsStudents" EntitySet="SportsStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SportsStudents_Student" Association="Self.FK_SportsStudents_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="SportsStudents" EntitySet="SportsStudents" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,40 @@
+﻿<Application
+    x:Class="SportsSchool.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:SportsSchool"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--  Подключение словарей ресурсов  -->
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme
+                    BaseTheme="Inherit"
+                    PrimaryColor="DeepPurple"
+                    SecondaryColor="DeepOrange" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  Ваш пользовательский стиль  -->
+            <Style x:Key="BorderMyFon" TargetType="Border">
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="Background" Value="#E6E6FA" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#D8BFD8" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="TextMy" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontStyle" Value="Italic" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Foreground" Value="#FF9864C5" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

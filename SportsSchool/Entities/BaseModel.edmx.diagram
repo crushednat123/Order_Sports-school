@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5985ea986f0f446e945d1d250b1120c8" Name="Diagram1">
+        <EntityTypeShape EntityType="SportSchoolModel.Coach" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportSchoolModel.Parents" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportSchoolModel.RecordingsOffClasses" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportSchoolModel.Schedules" Width="1.5" PointX="3" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportSchoolModel.Sessions" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportSchoolModel.Sports" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportSchoolModel.SportsAndCoach" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportSchoolModel.SportsStudents" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportSchoolModel.Student" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportSchoolModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="SportSchoolModel.FK_Schedules_Coach" ManuallyRouted="false" />
+        <AssociationConnector Association="SportSchoolModel.FK_Sessions_Coach" ManuallyRouted="false" />
+        <AssociationConnector Association="SportSchoolModel.FK_SportsAndCoach_Coach" ManuallyRouted="false" />
+        <AssociationConnector Association="SportSchoolModel.FK_Student_Parents" ManuallyRouted="false" />
+        <AssociationConnector Association="SportSchoolModel.FK_RecordingsOffClasses_Sessions" ManuallyRouted="false" />
+        <AssociationConnector Association="SportSchoolModel.FK_RecordingsOffClasses_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SportSchoolModel.FK_Sessions_Sports" ManuallyRouted="false" />
+        <AssociationConnector Association="SportSchoolModel.FK_SportsAndCoach_Sports" ManuallyRouted="false" />
+        <AssociationConnector Association="SportSchoolModel.FK_SportsStudents_Sports" ManuallyRouted="false" />
+        <AssociationConnector Association="SportSchoolModel.FK_SportsStudents_Student" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
