@@ -2,7 +2,7 @@ ALTER DATABASE [SportSchool] SET COMPATIBILITY_LEVEL = 160
 GO
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
-EXEC [SportSchool].[dbo].[sp_fulltext_database] @action = "enable"
+EXEC [SportSchool].[dbo].[sp_fulltext_database] @action = 'enable'
 end
 GO﻿
 ALTER DATABASE [SportSchool] SET ANSI_NULL_DEFAULT OFF 
