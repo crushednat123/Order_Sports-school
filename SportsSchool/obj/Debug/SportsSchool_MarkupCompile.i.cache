@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\kirill\Desktop\Progect\SportsSchool\obj\Debug\
+C:\Users\kirill\Desktop\Order_Sports-school-main\Order_Sports-school-main\SportsSchool\obj\Debug\
 SportsSchool
 none
 false
 DEBUG;TRACE
-C:\Users\kirill\Desktop\Progect\SportsSchool\App.xaml
-11-1041428283
+C:\Users\kirill\Desktop\Order_Sports-school-main\Order_Sports-school-main\SportsSchool\App.xaml
+151737199654
 21929009593
-36572808274
-211394751334
-MainWindow.xaml;Pages\AddEdditPage\EditCoachPage.xaml;Pages\AddEdditPage\EditSessionPage.xaml;Pages\AddEdditPage\EditSportPage.xaml;Pages\AddEdditPage\EditStydentPage.xaml;Pages\AdminPage.xaml;Pages\ChoahPage.xaml;Pages\SessionPage.xaml;Pages\SportsOverviewPage.xaml;Pages\StartPage.xaml;Pages\StydentPage.xaml;
+45705099567
+32-1188707510
+MainWindow.xaml;Pages\AddEdditPage\AdUesrPage.xaml;Pages\AddEdditPage\EditCoachPage.xaml;Pages\AddEdditPage\EditParentsPage.xaml;Pages\AddEdditPage\EditSessionPage.xaml;Pages\AddEdditPage\EditSportPage.xaml;Pages\AddEdditPage\EditStydentPage.xaml;Pages\AdminPage.xaml;Pages\ChoahPage.xaml;Pages\ParentsPage.xaml;Pages\SessionPage.xaml;Pages\SportsOverviewPage.xaml;Pages\StartPage.xaml;Pages\StydentPage.xaml;Pages\UserPage.xaml;
 
 True
 

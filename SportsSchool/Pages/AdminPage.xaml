@@ -11,8 +11,8 @@
     mc:Ignorable="d">
     <Grid>
         <Border
-            Width="200"
-            Height="210"
+            Width="210"
+            Height="320"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="#E6E6FA"
@@ -44,6 +44,19 @@
                     Content="Спорт"
                     FocusVisualStyle="{x:Null}" />
 
+                <Button
+                    x:Name="btnAdUser"
+                    Margin="10"
+                    Click="btnAdUser_Click"
+                    Content="Пользователя"
+                    FocusVisualStyle="{x:Null}" />
+
+                <Button
+                    x:Name="btnParents"
+                    Margin="10"
+                    Click="btnParents_Click"
+                    Content="Родители"
+                    FocusVisualStyle="{x:Null}" />
             </StackPanel>
         </Border>
 

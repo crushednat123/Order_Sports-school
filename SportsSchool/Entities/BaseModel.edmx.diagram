@@ -25,6 +25,9 @@
         <AssociationConnector Association="SportSchoolModel.FK_SportsAndCoach_Sports" ManuallyRouted="false" />
         <AssociationConnector Association="SportSchoolModel.FK_SportsStudents_Sports" ManuallyRouted="false" />
         <AssociationConnector Association="SportSchoolModel.FK_SportsStudents_Student" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SportSchoolModel.Role" Width="1.5" PointX="7.375" PointY="1.375" />
+        <EntityTypeShape EntityType="SportSchoolModel.Users" Width="1.5" PointX="9.625" PointY="1" />
+        <AssociationConnector Association="SportSchoolModel.FK_Users_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -11,60 +11,11 @@
     mc:Ignorable="d">
 
     <Grid xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400*" />
-            <ColumnDefinition Width="400*" />
-        </Grid.ColumnDefinitions>
-
-        <Border
-            x:Name="borderUser"
-            Grid.Column="0"
-            MouseDown="borderUser_MouseDown"
-            Style="{StaticResource BorderMyFon}">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <materialDesign:PackIcon
-                    Width="auto"
-                    Height="88"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Kind="Account" />
-
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Foreground="#4B0082"
-                    Text="Гость" />
-            </StackPanel>
-        </Border>
-
-        <Border
-            x:Name="borderAdmin"
-            Grid.Column="1"
-            MouseDown="borderAdmin_MouseDown"
-            Style="{StaticResource BorderMyFon}">
-
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <materialDesign:PackIcon
-                    Width="auto"
-                    Height="88"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Kind="AccountSupervisor" />
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Foreground="#4B0082"
-                    Text="Администратор" />
-            </StackPanel>
-        </Border>
 
         <Grid
             x:Name="gridAdmin"
             Grid.ColumnSpan="2"
-            Panel.ZIndex="1"
-            Visibility="Hidden">
+            Panel.ZIndex="1">
 
             <Border
                 Grid.ColumnSpan="2"
@@ -73,69 +24,46 @@
                 CornerRadius="10"
                 Opacity="0.3" />
 
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
-            <Border
-                Grid.ColumnSpan="2"
-                Margin="30"
-                Background="White"
-                BorderBrush="#DDA0DD"
-                BorderThickness="1"
-                CornerRadius="5">
-                <Grid>
-                    <materialDesign:PackIcon
-                        Width="auto"
-                        Height="30"
-                        Margin="10"
-                        HorizontalAlignment="Right"
-                        Kind="Close"
-                        MouseLeftButtonDown="PackIcon_MouseLeftButtonDown"
-                        ToolTip="Закрыть" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{DynamicResource MaterialDesignBody1TextBlock}" Text="Логин" />
+                    <TextBox
+                        x:Name="tbLogin"
+                        Width="105"
+                        Margin="28,0,0,0"
+                        MaxLength="20"
+                        Style="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}" />
 
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                </StackPanel>
 
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{DynamicResource MaterialDesignBody1TextBlock}" Text="Логин" />
-                            <TextBox
-                                x:Name="tbLogin"
-                                Width="105"
-                                Margin="28,0,0,0"
-                                MaxLength="20"
-                                Style="{DynamicResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                    <TextBlock Style="{DynamicResource MaterialDesignBody1TextBlock}" Text="Пароль" />
+                    <PasswordBox
+                        x:Name="tbPassword"
+                        Width="105"
+                        Margin="20,0,0,0"
+                        FocusVisualStyle="{x:Null}"
+                        MaxLength="20"
+                        Style="{DynamicResource MaterialDesignFloatingHintRevealPasswordBox}" />
+                </StackPanel>
 
-                        </StackPanel>
+                <Button
+                    x:Name="btnReg"
+                    Margin="0,20,0,0"
+                    Click="btnReg_Click"
+                    Content="Регистрация"
+                    Focusable="False"
+                    Style="{DynamicResource MaterialDesignFlatMidBgButton}" />
 
-                        <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
-                            <TextBlock Style="{DynamicResource MaterialDesignBody1TextBlock}" Text="Пароль" />
-                            <PasswordBox
-                                x:Name="tbPassword"
-                                Width="105"
-                                Margin="20,0,0,0"
-                                FocusVisualStyle="{x:Null}"
-                                MaxLength="20"
-                                Style="{DynamicResource MaterialDesignFloatingHintRevealPasswordBox}" />
-
-                        </StackPanel>
-
-                        <CheckBox
-                            x:Name="chekBoxroot"
-                            Margin="0,20,0,0"
-                            Content="Запомнить"
-                            FocusVisualStyle="{x:Null}"
-                            Style="{DynamicResource MaterialDesignCheckBox}" />
-
-                        <Button
-                            x:Name="btnRoot"
-                            Margin="0,20,0,0"
-                            Click="btnRoot_Click"
-                            Content="Войти"
-                            IsDefault="True"
-                            Style="{DynamicResource MaterialDesignFlatMidBgButton}" />
-                    </StackPanel>
-                </Grid>
-            </Border>
+                <Button
+                    x:Name="btnVoiti"
+                    Margin="0,20,0,0"
+                    Click="btnVoiti_Click"
+                    Content="Войти"
+                    IsDefault="True"
+                    Style="{DynamicResource MaterialDesignFlatMidBgButton}" />
+            </StackPanel>
         </Grid>
-
-
-
     </Grid>
 </Page>

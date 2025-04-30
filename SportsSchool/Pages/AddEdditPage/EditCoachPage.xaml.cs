@@ -23,7 +23,6 @@ namespace SportsSchool.Pages.AddEdditPage
     /// </summary>
     public partial class EditCoachPage : Page
     {
-       
 
         private Coach _currentCoach;
         public EditCoachPage(int coachId)

@@ -11,5 +11,7 @@ namespace SportsSchool.Logic
         public static byte StatysPage {  get; set; }
 
         public static byte CheckRoot { get; set; } = 0;
+
+        public static string Id { get; set; }
     }
 }

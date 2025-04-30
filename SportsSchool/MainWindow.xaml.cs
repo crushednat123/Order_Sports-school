@@ -61,7 +61,12 @@ namespace SportsSchool
                 btnBack.Visibility = Visibility.Visible;
                 btnHome.Visibility = Visibility.Hidden;
             }
+            if (startFrame.Content.GetType().Name == "AdUesrPage")
+            {
 
+                btnBack.Visibility = Visibility.Visible;
+                btnHome.Visibility = Visibility.Visible;
+            }
 
         }
 

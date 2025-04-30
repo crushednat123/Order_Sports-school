@@ -1,4 +1,5 @@
 ﻿using SportsSchool.Logic;
+using SportsSchool.Pages.AddEdditPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,35 +27,63 @@ namespace SportsSchool.Pages
             InitializeComponent();
         }
 
-        private void borderUser_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btnVoiti_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbLogin.Text.Length == 0 || tbPassword.Password.Length == 0)
+            {
+                MessageBox.Show("Вы не ввели логин или пароль", "Информация",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            else
+            {
+                try
+                {
+                    var user = App.DataBase.Users.Where(p =>
+                    p.Login == tbLogin.Text && p.Password == tbPassword.Password).FirstOrDefault();
+
+                    if (user != null)
+                    {
+                        GlobalVarbinary.Id = user.Login;
+                        if (user.IdRole == 1)
+                        {
+                            GlobalVarbinary.CheckRoot = 1;
+                            NavigeteManager.StartFrame.Navigate(new AdminPage());
+                            MessageBox.Show("Вы вошли как администратор", "Информация",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                            return;
+                        }
+
+                        if (user.IdRole == 2)
+                        {
+                            GlobalVarbinary.CheckRoot = 0;
+                            NavigeteManager.StartFrame.Navigate(new SportsOverviewPage());
+
+                            MessageBox.Show("Вы вошли как гость", "Информация",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неправильный логин или пароль", "Информация",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Нет подключения к серверу", "Информация",
+                            MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
+        private void btnReg_Click(object sender, RoutedEventArgs e)
         {
             GlobalVarbinary.CheckRoot = 0;
-            NavigeteManager.StartFrame.Navigate(new SportsOverviewPage());
-        }
-
-        private void borderAdmin_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            borderAdmin.IsEnabled = false;
-            borderUser.IsEnabled = false;
-            gridAdmin.Visibility = Visibility.Visible;
-        }
-
-        private void PackIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            gridAdmin.Visibility = Visibility.Hidden;
-            borderAdmin.IsEnabled = true;
-            borderUser.IsEnabled = true;
-        }
-
-        private void btnRoot_Click(object sender, RoutedEventArgs e)
-        {
-            if(tbLogin.Text == "root" && tbPassword.Password == "root")
-            {
-                tbLogin.Text = "";
-                tbPassword.Password = "";
-                GlobalVarbinary.CheckRoot = 1;
-                NavigeteManager.StartFrame.Navigate(new AdminPage());
-            }
+            GlobalVarbinary.StatysPage = 0;
+            NavigeteManager.StartFrame.Navigate(new AdUesrPage(null));
         }
     }
 }

@@ -306,5 +306,46 @@
       <End Role="Student" EntitySet="Student" />
       <End Role="SportsStudents" EntitySet="SportsStudents" />
     </AssociationSet>
+    <EntitySet Name="Role" EntityType="SportSchoolModel.Role" />
+    <EntitySet Name="Users" EntityType="SportSchoolModel.Users" />
+    <AssociationSet Name="FK_Users_Role" Association="SportSchoolModel.FK_Users_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="SportSchoolModel.FK_Users_Role" FromRole="Role" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Login" />
+    </Key>
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="IdRole" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="SurName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Role" Relationship="SportSchoolModel.FK_Users_Role" FromRole="Users" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_Users_Role">
+    <End Type="SportSchoolModel.Role" Role="Role" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="SportSchoolModel.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

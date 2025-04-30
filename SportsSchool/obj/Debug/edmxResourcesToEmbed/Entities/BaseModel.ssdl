@@ -29,6 +29,13 @@
     <Property Name="IdStudent" Type="int" />
     <Property Name="IdSession" Type="int" />
   </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" />
+  </EntityType>
   <EntityType Name="Schedules">
     <Key>
       <PropertyRef Name="Id" />
@@ -94,6 +101,18 @@
     <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Login" />
+    </Key>
+    <Property Name="Login" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="30" />
+    <Property Name="IdRole" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" />
+    <Property Name="SurName" Type="nvarchar" MaxLength="30" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="30" />
   </EntityType>
   <Association Name="FK_RecordingsOffClasses_Sessions">
     <End Role="Sessions" Type="Self.Sessions" Multiplicity="0..1">
@@ -235,10 +254,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Users_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище SportSchoolModelContainer">
     <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Parents" EntityType="Self.Parents" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RecordingsOffClasses" EntityType="Self.RecordingsOffClasses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Schedules" EntityType="Self.Schedules" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sports" EntityType="Self.Sports" Schema="dbo" store:Type="Tables" />
@@ -246,6 +280,7 @@
     <EntitySet Name="SportsStudents" EntityType="Self.SportsStudents" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_RecordingsOffClasses_Sessions" Association="Self.FK_RecordingsOffClasses_Sessions">
       <End Role="Sessions" EntitySet="Sessions" />
       <End Role="RecordingsOffClasses" EntitySet="RecordingsOffClasses" />
@@ -285,6 +320,10 @@
     <AssociationSet Name="FK_Student_Parents" Association="Self.FK_Student_Parents">
       <End Role="Parents" EntitySet="Parents" />
       <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

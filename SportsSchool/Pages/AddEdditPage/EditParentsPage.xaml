@@ -1,0 +1,128 @@
+﻿<Page
+    x:Class="SportsSchool.Pages.AddEdditPage.EditParentsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SportsSchool.Pages.AddEdditPage"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="EditParentsPage"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Border
+        Height="auto"
+        Margin="20"
+        Background="#E6E6FA"
+        CornerRadius="10"
+        Style="{DynamicResource MaterialDesignToolBarMainPanelBorderStyle}">
+
+        <Grid Margin="20">
+            <!--  Определение столбцов  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170" />
+                <!--  Ширина первой колонки для текста  -->
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Тексты в первой колонке  -->
+            <Grid Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock
+                    Margin="0,-240,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="#FF9864C5"
+                    Text="Фамилия" />
+
+                <TextBlock
+                    Margin="0,-150,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="#FF9864C5"
+                    Text="Имя" />
+
+                <TextBlock
+                    Margin="0,-50,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="#FF9864C5"
+                    Text="Отчество" />
+
+                <TextBlock
+                    Margin="0,90,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="#FF9864C5"
+                    Text="Адрес" />
+
+                <TextBlock
+                    Margin="0,190,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="#FF9864C5"
+                    Text="Телефон" />
+            </Grid>
+
+            <!--  Текстовые поля во второй колонке  -->
+            <Grid Grid.Column="1" VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBox
+                        Name="tbLastName"
+                        Margin="0,0,0,25"
+                        Style="{DynamicResource MaterialDesignTextBox}"
+                        Text="{Binding SurName}" />
+
+                    <TextBox
+                        Name="tbFirstName"
+                        Margin="0,0,0,25"
+                        Style="{DynamicResource MaterialDesignTextBox}"
+                        Text="{Binding Name}" />
+
+                    <TextBox
+                        Name="tbMiddleName"
+                        Margin="0,0,0,25"
+                        Style="{DynamicResource MaterialDesignTextBox}"
+                        Text="{Binding Patronymic}" />
+
+                    <TextBox
+                        Name="tbAddress"
+                        Margin="0,0,0,25"
+                        Style="{DynamicResource MaterialDesignTextBox}"
+                        Text="{Binding Address}" />
+
+                    <TextBox
+                        Name="tbPhone"
+                        Margin="0,0,0,25"
+                        materialDesign:HintAssist.Hint="+7 (XXX) XXX-XX-XX"
+                        Style="{DynamicResource MaterialDesignTextBox}"
+                        Text="{Binding Telephone}" />
+                </StackPanel>
+            </Grid>
+
+            <!--  Кнопка Сохранить  -->
+            <Button
+                x:Name="btnSave"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                Width="120"
+                Height="40"
+                Margin="0,0,0,20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Click="btnSave_Click"
+                Content="Сохранить"
+                Style="{StaticResource MaterialDesignRaisedButton}" />
+        </Grid>
+    </Border>
+</Page>

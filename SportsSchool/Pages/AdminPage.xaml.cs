@@ -1,4 +1,5 @@
 ﻿using SportsSchool.Logic;
+using SportsSchool.Pages.AddEdditPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,17 @@ namespace SportsSchool.Pages
         {
            
             NavigeteManager.StartFrame.Navigate(new SportsOverviewPage());
+        }
+
+        private void btnAdUser_Click(object sender, RoutedEventArgs e)
+        {
+            
+            NavigeteManager.StartFrame.Navigate(new UserPage());
+        }
+
+        private void btnParents_Click(object sender, RoutedEventArgs e)
+        {
+            NavigeteManager.StartFrame.Navigate(new ParentsPage());
         }
     }
 }
