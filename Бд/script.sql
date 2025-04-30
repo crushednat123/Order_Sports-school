@@ -1,12 +1,13 @@
 USE [master]
 GO
+
 ALTER DATABASE [SportSchool] SET COMPATIBILITY_LEVEL = 160
 GO
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
 EXEC [SportSchool].[dbo].[sp_fulltext_database] @action = 'enable'
 end
-GO﻿
+GO
 ALTER DATABASE [SportSchool] SET ANSI_NULL_DEFAULT OFF 
 GO
 ALTER DATABASE [SportSchool] SET ANSI_NULLS OFF 
@@ -75,7 +76,7 @@ ALTER DATABASE [SportSchool] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEAN
 GO
 USE [SportSchool]
 GO
-/****** Object:  Table [dbo].[Coach]    Script Date: 12.04.2025 21:35:46 ******/
+/****** Object:  Table [dbo].[Coach]    Script Date: 30.04.2025 22:37:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -92,7 +93,7 @@ CREATE TABLE [dbo].[Coach](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Parents]    Script Date: 12.04.2025 21:35:46 ******/
+/****** Object:  Table [dbo].[Parents]    Script Date: 30.04.2025 22:37:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -110,7 +111,7 @@ CREATE TABLE [dbo].[Parents](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RecordingsOffClasses]    Script Date: 12.04.2025 21:35:46 ******/
+/****** Object:  Table [dbo].[RecordingsOffClasses]    Script Date: 30.04.2025 22:37:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -125,7 +126,21 @@ CREATE TABLE [dbo].[RecordingsOffClasses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Schedules]    Script Date: 12.04.2025 21:35:46 ******/
+/****** Object:  Table [dbo].[Role]    Script Date: 30.04.2025 22:37:42 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Role](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](20) NULL,
+ CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Schedules]    Script Date: 30.04.2025 22:37:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -142,7 +157,7 @@ CREATE TABLE [dbo].[Schedules](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Sessions]    Script Date: 12.04.2025 21:35:46 ******/
+/****** Object:  Table [dbo].[Sessions]    Script Date: 30.04.2025 22:37:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -160,7 +175,7 @@ CREATE TABLE [dbo].[Sessions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Sports]    Script Date: 12.04.2025 21:35:46 ******/
+/****** Object:  Table [dbo].[Sports]    Script Date: 30.04.2025 22:37:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -175,7 +190,7 @@ CREATE TABLE [dbo].[Sports](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SportsAndCoach]    Script Date: 12.04.2025 21:35:46 ******/
+/****** Object:  Table [dbo].[SportsAndCoach]    Script Date: 30.04.2025 22:37:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -190,7 +205,7 @@ CREATE TABLE [dbo].[SportsAndCoach](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SportsStudents]    Script Date: 12.04.2025 21:35:46 ******/
+/****** Object:  Table [dbo].[SportsStudents]    Script Date: 30.04.2025 22:37:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -205,7 +220,7 @@ CREATE TABLE [dbo].[SportsStudents](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Student]    Script Date: 12.04.2025 21:35:46 ******/
+/****** Object:  Table [dbo].[Student]    Script Date: 30.04.2025 22:37:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -220,6 +235,25 @@ CREATE TABLE [dbo].[Student](
  CONSTRAINT [PK_Student] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 30.04.2025 22:37:42 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[Login] [nvarchar](20) NOT NULL,
+	[Password] [nvarchar](20) NULL,
+	[Mail] [nvarchar](30) NULL,
+	[IdRole] [int] NULL,
+	[Name] [nvarchar](30) NULL,
+	[SurName] [nvarchar](30) NULL,
+	[MiddleName] [nvarchar](30) NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[Login] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -239,7 +273,7 @@ SET IDENTITY_INSERT [dbo].[Coach] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Parents] ON 
 
-INSERT [dbo].[Parents] ([Id], [Name], [SurName], [Patronymic], [Address], [Telephone]) VALUES (1, N'Мария', N'Иванова', N'Петровна', N'г. Москва, ул. Ленина, д. 12', N'+7 (495) 123-45-67')
+INSERT [dbo].[Parents] ([Id], [Name], [SurName], [Patronymic], [Address], [Telephone]) VALUES (1, N'Мария', N'Иванова1', N'Петровна', N'г. Москва, ул. Ленина, д. 12', N'+7 (495) 123-45-67')
 INSERT [dbo].[Parents] ([Id], [Name], [SurName], [Patronymic], [Address], [Telephone]) VALUES (2, N'Алексей', N'Петров', N'Иванович', N'г. Санкт-Петербург, пр. Невский, д. 45', N'+7 (812) 234-56-78')
 INSERT [dbo].[Parents] ([Id], [Name], [SurName], [Patronymic], [Address], [Telephone]) VALUES (3, N'Анна', N'Сидорова', N'Владимировна', N'г. Новосибирск, ул. Красная, д. 18', N'+7 (383) 345-67-89')
 INSERT [dbo].[Parents] ([Id], [Name], [SurName], [Patronymic], [Address], [Telephone]) VALUES (4, N'Дмитрий', N'Кузнецов', N'Алексеевич', N'г. Екатеринбург, ул. Победы, д. 3', N'+7 (343) 456-78-90')
@@ -264,6 +298,12 @@ INSERT [dbo].[RecordingsOffClasses] ([Id], [IdStudent], [IdSession]) VALUES (8, 
 INSERT [dbo].[RecordingsOffClasses] ([Id], [IdStudent], [IdSession]) VALUES (9, 9, 9)
 INSERT [dbo].[RecordingsOffClasses] ([Id], [IdStudent], [IdSession]) VALUES (10, 10, 10)
 SET IDENTITY_INSERT [dbo].[RecordingsOffClasses] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Role] ON 
+
+INSERT [dbo].[Role] ([Id], [Name]) VALUES (1, N'Администратор')
+INSERT [dbo].[Role] ([Id], [Name]) VALUES (2, N'Гость')
+SET IDENTITY_INSERT [dbo].[Role] OFF
 GO
 INSERT [dbo].[Schedules] ([Id], [DayOfWeek], [TimeSlot], [IdCoach], [IdSession]) VALUES (1, N'Понедельник', CAST(N'10:00:00' AS Time), 1, 1)
 INSERT [dbo].[Schedules] ([Id], [DayOfWeek], [TimeSlot], [IdCoach], [IdSession]) VALUES (2, N'Вторник', CAST(N'12:30:00' AS Time), 2, 2)
@@ -345,6 +385,17 @@ INSERT [dbo].[Student] ([Id], [Name], [SurName], [Patronymic], [BirthDate], [IdP
 INSERT [dbo].[Student] ([Id], [Name], [SurName], [Patronymic], [BirthDate], [IdParents]) VALUES (10, N'Ирина', N'Федорова', N'Константиновна', CAST(N'2001-10-30' AS Date), 10)
 SET IDENTITY_INSERT [dbo].[Student] OFF
 GO
+INSERT [dbo].[Users] ([Login], [Password], [Mail], [IdRole], [Name], [SurName], [MiddleName]) VALUES (N'user1', N'pass1', N'user1@mail.com', 1, N'Иван', N'Иванов', N'Петрович')
+INSERT [dbo].[Users] ([Login], [Password], [Mail], [IdRole], [Name], [SurName], [MiddleName]) VALUES (N'user10', N'pass10', N'user10@mail.com', 2, N'Татьяна', N'Орлова1', N'Анатольевна')
+INSERT [dbo].[Users] ([Login], [Password], [Mail], [IdRole], [Name], [SurName], [MiddleName]) VALUES (N'user2', N'pass2', N'user2@mail.com', 2, N'Анна', N'Смирнова', N'Александровна')
+INSERT [dbo].[Users] ([Login], [Password], [Mail], [IdRole], [Name], [SurName], [MiddleName]) VALUES (N'user3', N'pass3', N'user3@mail.com', 1, N'Петр', N'Васильев', N'Сергеевич')
+INSERT [dbo].[Users] ([Login], [Password], [Mail], [IdRole], [Name], [SurName], [MiddleName]) VALUES (N'user4', N'pass4', N'user4@mail.com', 2, N'Мария', N'Кузнецова', N'Ивановна')
+INSERT [dbo].[Users] ([Login], [Password], [Mail], [IdRole], [Name], [SurName], [MiddleName]) VALUES (N'user5', N'pass5', N'user5@mail.com', 1, N'Сергей', N'Попов', N'Андреевич')
+INSERT [dbo].[Users] ([Login], [Password], [Mail], [IdRole], [Name], [SurName], [MiddleName]) VALUES (N'user6', N'pass6', N'user6@mail.com', 2, N'Екатерина', N'Федорова', N'Михайловна')
+INSERT [dbo].[Users] ([Login], [Password], [Mail], [IdRole], [Name], [SurName], [MiddleName]) VALUES (N'user7', N'pass7', N'user7@mail.com', 1, N'Алексей', N'Соколов', N'Геннадьевич')
+INSERT [dbo].[Users] ([Login], [Password], [Mail], [IdRole], [Name], [SurName], [MiddleName]) VALUES (N'user8', N'pass8', N'user8@mail.com', 2, N'Ольга', N'Морозова', N'Владимировна')
+INSERT [dbo].[Users] ([Login], [Password], [Mail], [IdRole], [Name], [SurName], [MiddleName]) VALUES (N'user9', N'pass9', N'user9@mail.com', 1, N'Дмитрий', N'Никитин', N'Алексеевич')
+GO
 ALTER TABLE [dbo].[RecordingsOffClasses]  WITH CHECK ADD  CONSTRAINT [FK_RecordingsOffClasses_Sessions] FOREIGN KEY([IdSession])
 REFERENCES [dbo].[Sessions] ([Id])
 ON UPDATE CASCADE
@@ -414,6 +465,13 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Student] CHECK CONSTRAINT [FK_Student_Parents]
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK_Users_Role] FOREIGN KEY([IdRole])
+REFERENCES [dbo].[Role] ([Id])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_Role]
 GO
 USE [master]
 GO
